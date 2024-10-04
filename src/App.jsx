@@ -9,10 +9,8 @@ function App() {
    <Cabecalho />
    <Principal/>
    <Rodape/>
-    
-
-
- </>
+     
+  </>
  );
 }
 
