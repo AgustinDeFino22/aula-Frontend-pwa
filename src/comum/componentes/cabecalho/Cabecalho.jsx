@@ -4,7 +4,8 @@ import './Cabecalho.css';
 function Cabecalho() {
     return (
     <header className="cabecalho_root">
-    <Avatar nome=' Agustin Fernandez'/>
+    <img src="/public/vite.svg" height={40} />
+    <Avatar nome='Agustin Emanuel'/>
     </header>
     );
 }

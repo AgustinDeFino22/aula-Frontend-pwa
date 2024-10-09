@@ -1,0 +1,25 @@
+.botao-customizado_root {
+ padding: 16 px;
+ border: none;
+
+ font-size: 14px;
+ opacity: 0.8;
+ cursor: pointer;
+}
+
+.botao-customizado_root:hover{
+    opacity: 1;
+}
+
+.botao-customizado_primario{
+    background-color: var(--cor-primaria);
+}
+ 
+.botao-customizado_secundarioit add .
+{
+    background-color: var(--cor-secundaria);
+}
+
+.botao-customizado_padrao{
+    background-color: var(--cor-cinza);
+}
