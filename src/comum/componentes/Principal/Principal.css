@@ -6,3 +6,8 @@
     flex-direction: column;
     gap: 16px;
 }
+
+.principal_titulo{
+    display: flex;
+    align-items: flex;
+}
