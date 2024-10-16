@@ -11,3 +11,6 @@
     display: flex;
     align-items: flex;
 }
+.botao-voltar:hover {
+    background-color: #0056b3;
+  }

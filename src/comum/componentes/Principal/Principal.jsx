@@ -16,5 +16,4 @@ function Principal({ voltarPara, titulo, children }) {
         </main>
     );
 }
-
 export default Principal;
