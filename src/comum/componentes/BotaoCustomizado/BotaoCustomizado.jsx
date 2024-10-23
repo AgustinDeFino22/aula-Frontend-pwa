@@ -6,15 +6,15 @@ const BotaoCustomizado = ({ aoClicar, children, cor }) => {
 
     switch (cor) {
         case 'primaria':
-            estilos.push('botao-customizado_primario');
-            break;
+          estilos.push('botao-customizado_primario');
+          break;
         case 'secundaria':
-            estilos.push('botao-customizado_secundario');
-            break;
+          estilos.push('botao-customizado_secundario');
+          break;
         default:
-            estilos.push('botao-customizado_padrao');
-            break;
-    }
+          estilos.push('botao-customizado_primario');
+          break;
+      }
 
     return (
         <button
