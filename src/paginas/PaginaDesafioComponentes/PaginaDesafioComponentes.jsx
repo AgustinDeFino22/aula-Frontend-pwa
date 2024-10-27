@@ -3,7 +3,10 @@ import MostrarDivisao from "./MostrarDivisao/MostrarDivisao ";
 import MostrarSoma from "./MostrarSoma/MostrarSoma";
 import MostrarSubtracao from "./MostrarSubtracao/MostrarSubtracao";
 import MostrarMultiplicacao from "./MostrarMultiplicacao/MostrarMultiplicacao";
-import MostarMeuNomecompleto from "./MostrarMeuNomecompleto/MostarMeuNomecompleto";
+import MostrarMeuNomeCompleto from "./MostrarMeuNomecompleto/MostrarMeuNomecompleto";
+import MostrarProduto from "./MostrarProduto/MostrarProduto";
+import MostrarNumerosPares from "./MostrarNumerosPares/MostrarNumerosPares";
+
 const PaginaDesafioComponentes = () => {
   return (
     <Principal>
@@ -11,7 +14,9 @@ const PaginaDesafioComponentes = () => {
       <MostrarSubtracao numero1={10} numero2={2} />
       <MostrarDivisao numero1={50} numero2={10} />
       <MostrarMultiplicacao numero1={10} numero2={10} />
-      <MostarMeuNomecompleto nome={""} sobrenome={""} />
+      <MostrarMeuNomeCompleto nome="Agustin Emanuel" sobrenome="Fernandez" />
+     <MostrarProduto />
+     <MostrarNumerosPares />
     </Principal>
   );
 };
