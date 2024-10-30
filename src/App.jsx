@@ -7,6 +7,8 @@ import ListaProdutos from "./paginas/ListaProdutos/ListaProdutos";
 import BotaoContador from "./paginas/ListaProdutos/BotaoContador/BotaoContador";
 import PaginaListaTarefas from "./paginas/PaginaListaTarefas/PaginaListaTarefas";
 import PaginaDesafioComponentes from "./paginas/PaginaDesafioComponentes/PaginaDesafioComponentes";
+import PaginaCadastroCliente from "./paginas/PaginaCadastroCliente/PaginaCadastroCliente";
+import PaginaListaClientes from "./paginas/PaginaListaClientes/PaginaListaClientes";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,14 @@ const router = createBrowserRouter([
   {
     path: "lista-desafio",
     element: <PaginaDesafioComponentes />,
+  },
+  {
+    path: "lista-clientes",
+    element: <PaginaListaClientes />,
+  },
+  {
+    path: "cadastro-cliente",
+    element: <PaginaCadastroCliente />,
   },
 ]);
 

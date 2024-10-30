@@ -1,16 +1,14 @@
-.principal_root{
+.principal_root {
     background-color: var(--cor-fundo-padrao);
-    padding-left: 16px;
-    
+    padding: 16px;
+  
     display: flex;
     flex-direction: column;
     gap: 16px;
-}
-
-.principal_titulo{
+  }
+  
+  .principal_titulo {
     display: flex;
-    align-items: flex;
-}
-.botao-voltar:hover {
-    background-color: #0056b3;
+    align-items: center;
+    gap: 8px;
   }

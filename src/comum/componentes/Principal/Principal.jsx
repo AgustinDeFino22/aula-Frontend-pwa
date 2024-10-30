@@ -1,20 +1,23 @@
-import BotaoCustomizado from '../BotaoCustomizado/BotaoCustomizado';
-import './Principal.css';
-import { Link } from 'react-router-dom';
-import { FiChevronLeft } from "react-icons/fi";
+import { Link } from "react-router-dom";
+import "./Principal.css";
+import { FaChevronLeft } from "react-icons/fa6";
 
 function Principal({ voltarPara, titulo, children }) {
+  return (
+    <main className="principal_root">
+      <div className="principal_titulo">
+        {voltarPara && (
+          <Link to={voltarPara}>
+            <FaChevronLeft size={24} color="#3f50b5" />
+          </Link>
+        )}
 
-    return (
-        <main className='principal_root'>
-            <div className='principal_titulo'>
-                {voltarPara && <Link to={voltarPara}><FiChevronLeft  size={40} color=''/></Link>} {/* Corrigido: "Link" com L maiúsculo */}
+        <h1>{titulo}</h1>
+      </div>
 
-                <h1>{titulo}</h1>
-            </div>
-
-            {children}
-        </main>
-    );
+      {children}
+    </main>
+  );
 }
+
 export default Principal;
