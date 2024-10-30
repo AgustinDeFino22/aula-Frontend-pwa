@@ -2,7 +2,7 @@ import "./PaginaCadastroCliente.css";
 import Principal from "../../comum/componentes/Principal/Principal";
 import BotaoCustomizado from "../../comum/componentes/BotaoCustomizado/BotaoCustomizado";
 import { useState } from "react";
-import ServicoCliente from "../../comum/Servicos/servicosCliente";
+import ServicoCliente from "../../comum/Servicos/ServicoCliente";
 import { useNavigate } from "react-router-dom";
 
 const PaginaCadastroCliente = () => {
@@ -82,9 +82,7 @@ const PaginaCadastroCliente = () => {
         />
       </div>
 
-      <BotaoCustomizado cor="secundaria" aoClicar={salvar}>
-        Salvar
-      </BotaoCustomizado>
+      <BotaoCustomizado cor="secundaria" aoClicar={salvar}>Salvar</BotaoCustomizado>
     </Principal>
   );
 };
