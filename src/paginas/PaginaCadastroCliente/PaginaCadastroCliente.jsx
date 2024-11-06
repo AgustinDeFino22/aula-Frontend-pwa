@@ -1,23 +1,44 @@
 import "./PaginaCadastroCliente.css";
 import Principal from "../../comum/componentes/Principal/Principal";
 import BotaoCustomizado from "../../comum/componentes/BotaoCustomizado/BotaoCustomizado";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ServicoCliente from "../../comum/Servicos/ServicoCliente";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  MASCARA_CELULAR,
+  MASCARA_CPF,
+  formatarComMascara,
+} from "../../comum/Utils/Mascaras";
+const servicoCliente = new ServicoCliente();
 
 const PaginaCadastroCliente = () => {
   const navigate = useNavigate();
+  const params = useParams();
 
+  const [id, setId] = useState("");
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [celular, setCelular] = useState("");
   const [dataNascimento, setDataNascimento] = useState("");
   const [cpf, setCpf] = useState("");
 
-  const servicoCliente = new ServicoCliente();
+  useEffect(() => {
+    if (params.id) {
+      const clienteEncontrado = instanciaServicoCliente.buscarPorId(params.id);
+      if (clienteEncontrado) {
+        setNome(clienteEncontrado.nome);
+        setId(clienteEncontrado.id);
+        setEmail(clienteEncontrado.email);
+        setCelular(clienteEncontrado.celular);
+        setDataNascimento(clienteEncontrado.dataNascimento);
+        setCpf(clienteEncontrado.cpf);
+      }
+    }
+  }, [params.id]);
 
   const salvar = () => {
     const novoCliente = {
+      id: Date.now(),
       nome,
       email,
       celular,
@@ -31,7 +52,9 @@ const PaginaCadastroCliente = () => {
   };
 
   return (
-    <Principal titulo="Novo Cliente" voltarPara="/lista-clientes">
+    <Principal
+      titulo={params.id ? "Editar Cliente" : (voltarPara = "/lista-clientes")}
+    >
       <div className="campo">
         <label>Nome</label>
         <input
@@ -58,7 +81,9 @@ const PaginaCadastroCliente = () => {
           type="tel"
           placeholder="Digite o número do seu celular"
           value={celular}
-          onChange={(e) => setCelular(e.target.value)}
+          onChange={(e) =>
+            setCelular(formatarComMascara(e.target.value, MASCARA_CELULAR))
+          }
         />
       </div>
 
@@ -78,12 +103,17 @@ const PaginaCadastroCliente = () => {
           type="tel"
           placeholder="Digite o seu CPF"
           value={cpf}
-          onChange={(e) => setCpf(e.target.value)}
+          onChange={(e) =>
+            setCpf(formatarComMascara(e.target.value, MASCARA_CPF))
+          }
         />
       </div>
 
-      <BotaoCustomizado cor="secundaria" aoClicar={salvar}>Salvar</BotaoCustomizado>
+      <BotaoCustomizado cor="secundaria" aoClicar={salvar}>
+        Salvar
+      </BotaoCustomizado>
     </Principal>
   );
 };
+
 export default PaginaCadastroCliente;
