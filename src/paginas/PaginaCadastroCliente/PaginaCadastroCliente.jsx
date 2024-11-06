@@ -9,13 +9,15 @@ import {
   MASCARA_CPF,
   formatarComMascara,
 } from "../../comum/Utils/Mascaras";
-const servicoCliente = new ServicoCliente();
+
+
+const instanciaServicoCliente = new ServicoCliente();
 
 const PaginaCadastroCliente = () => {
   const navigate = useNavigate();
   const params = useParams();
 
-  const [id, setId] = useState("");
+
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [celular, setCelular] = useState("");
@@ -27,7 +29,6 @@ const PaginaCadastroCliente = () => {
       const clienteEncontrado = instanciaServicoCliente.buscarPorId(params.id);
       if (clienteEncontrado) {
         setNome(clienteEncontrado.nome);
-        setId(clienteEncontrado.id);
         setEmail(clienteEncontrado.email);
         setCelular(clienteEncontrado.celular);
         setDataNascimento(clienteEncontrado.dataNascimento);
@@ -37,29 +38,33 @@ const PaginaCadastroCliente = () => {
   }, [params.id]);
 
   const salvar = () => {
-    const novoCliente = {
-      id: Date.now(),
+    const cliente = {
+      id: params.id ? +params.id : Date.now(),
       nome,
       email,
       celular,
       dataNascimento,
       cpf,
     };
-    console.log("Novo Cliente:", novoCliente);
-
-    servicoCliente.salvar(novoCliente);
-    navigate("/lista-clientes");
+    if (params.id) {
+      instanciaServicoCliente.editarCliente(cliente);
+    } else {
+      instanciaServicoCliente.cadastrarCliente(cliente);
+    }
+    navigate('/lista-clientes');
   };
 
   return (
     <Principal
-      titulo={params.id ? "Editar Cliente" : (voltarPara = "/lista-clientes")}
+      titulo={params.id ? 'Editar Cliente' : 'Novo Cliente'}
+      voltarPara="/lista-clientes"
     >
+
       <div className="campo">
         <label>Nome</label>
         <input
           type="text"
-          placeholder="Nome"
+          placeholder="Digite seu nome"
           value={nome}
           onChange={(e) => setNome(e.target.value)}
         />

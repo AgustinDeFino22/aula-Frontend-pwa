@@ -1,10 +1,10 @@
-import "./PaginaListaClientes.css";
+import React, { useState, useEffect } from "react";
+import { FaEdit } from 'react-icons/fa';
 import { Link, useNavigate } from "react-router-dom";
-
 import Principal from "../../comum/componentes/Principal/Principal";
 import ServicoCliente from "../../comum/Servicos/ServicoCliente";
-import React, { useState, useEffect } from "react";
-import { FaFaceTired } from "react-icons/fa6";
+import "./PaginaListaClientes.css";
+
 
 const instanciaServicoCliente = new ServicoCliente();
 
@@ -27,11 +27,12 @@ const PaginaListaClientes = () => {
 
       {listaClientes.map((cliente) => {
         return (
-          <div key={cliente.id} className="pagina-lista-clientes_item-cliente">
+          <div 
+          key={cliente.id} 
+          className="pagina-lista-clientes__item-cliente">
             {cliente.nome}
-            <FaFaceTired
-              size={128}
-              color="red"
+            <FaEdit
+              size={24}
               onClick={() => navegarParaEdicao(cliente.id)}
             />
           </div>

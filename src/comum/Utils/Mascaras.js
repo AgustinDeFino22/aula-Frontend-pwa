@@ -1,6 +1,6 @@
 export const formatarComMascara = (value, mask) => {
     if (!value) return "";
-    let numericValue = value.replace(/[\D]/g, "");
+    let numericValue = value.replace(/[\D]/g, '');
     let maskedValue = "";
     let valueIndex = 0;
     for (let i = 0; i < mask.length; i++) {
