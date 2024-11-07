@@ -9,14 +9,13 @@ import {
   MASCARA_CPF,
   formatarComMascara,
 } from "../../comum/Utils/Mascaras";
-
+import { toast } from "react-toastify";
 
 const instanciaServicoCliente = new ServicoCliente();
 
 const PaginaCadastroCliente = () => {
   const navigate = useNavigate();
   const params = useParams();
-
 
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
@@ -38,6 +37,9 @@ const PaginaCadastroCliente = () => {
   }, [params.id]);
 
   const salvar = () => {
+    if (!nome || !email) {
+      toast.error("Preencha os campos obrigatórios!");
+    }
     const cliente = {
       id: params.id ? +params.id : Date.now(),
       nome,
@@ -51,15 +53,14 @@ const PaginaCadastroCliente = () => {
     } else {
       instanciaServicoCliente.cadastrarCliente(cliente);
     }
-    navigate('/lista-clientes');
+    navigate("/lista-clientes");
   };
 
   return (
     <Principal
-      titulo={params.id ? 'Editar Cliente' : 'Novo Cliente'}
+      titulo={params.id ? "Editar Cliente" : "Novo Cliente"}
       voltarPara="/lista-clientes"
     >
-
       <div className="campo">
         <label>Nome</label>
         <input

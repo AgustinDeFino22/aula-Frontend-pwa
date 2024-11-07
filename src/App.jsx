@@ -9,8 +9,15 @@ import PaginaListaTarefas from "./paginas/PaginaListaTarefas/PaginaListaTarefas"
 import PaginaDesafioComponentes from "./paginas/PaginaDesafioComponentes/PaginaDesafioComponentes";
 import PaginaCadastroCliente from "./paginas/PaginaCadastroCliente/PaginaCadastroCliente";
 import PaginaListaClientes from "./paginas/PaginaListaClientes/PaginaListaClientes";
+import { ToastContainer } from "react-toastify";
+import PaginaNovoUsuario from "./paginas/PaginaNovoUsuario/PaginaNovoUsuario";
 
 const router = createBrowserRouter([
+  {
+    path: "novo-usuario",
+    element: <PaginaNovoUsuario />,
+  },
+
   {
     path: "",
     element: <PaginaInicial />,
@@ -47,6 +54,7 @@ function App() {
       <Cabecalho />
       <RouterProvider router={router} />
       <Rodape />
+      <ToastContainer />
     </>
   );
 }
