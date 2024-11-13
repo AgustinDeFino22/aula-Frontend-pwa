@@ -2,33 +2,37 @@ import { useState } from "react";
 import Principal from "../../comum/componentes/Principal/Principal";
 import BotaoCustomizado from "../../comum/componentes/BotaoCustomizado/BotaoCustomizado";
 import { toast } from "react-toastify";
-import ServicoUsuarios from "../../comum/Servicos/servicoUsuario";
+import ServicoUsuarios from "../../comum/servicos/ServicoUsuarios";
 import { useNavigate } from "react-router-dom";
 
 const instanciaServicoUsuarios = new ServicoUsuarios();
 
 const PaginaNovoUsuario = () => {
-  const navigate = useNavigate;
+  const navigate = useNavigate();
+
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
   const cadastrar = () => {
     if (!nome || !email || !senha) {
-      toast.error("Prencha todos os campos.");
+      toast.error("Preencha todos os campos.");
       return;
     }
-    const Usuario = {
+
+    const usuario = {
       nome,
       email,
       senha,
     };
-    instanciaServicoUsuarios.cadastrarUsuario(Usuario);
-    toast.success("Cadastro criado com sucesso");
+
+    instanciaServicoUsuarios.cadastrarUsuario(usuario);
+    toast.success("Cadastro criado com sucesso.");
     navigate("/login");
   };
+
   return (
-    <Principal titutlo="Novo Usuário">
+    <Principal titulo="Novo Usuário" voltarPara="/login">
       <div className="campo">
         <label>Nome</label>
         <input

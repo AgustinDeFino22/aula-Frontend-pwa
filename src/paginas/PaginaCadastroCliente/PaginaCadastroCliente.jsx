@@ -1,15 +1,15 @@
-import "./PaginaCadastroCliente.css";
-import Principal from "../../comum/componentes/Principal/Principal";
-import BotaoCustomizado from "../../comum/componentes/BotaoCustomizado/BotaoCustomizado";
 import { useEffect, useState } from "react";
-import ServicoCliente from "../../comum/Servicos/ServicoCliente";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import BotaoCustomizado from "../../comum/componentes/BotaoCustomizado/BotaoCustomizado";
+import Principal from "../../comum/componentes/Principal/Principal";
+import ServicoCliente from "../../comum/servicos/ServicoCliente";
 import {
+  formatarComMascara,
   MASCARA_CELULAR,
   MASCARA_CPF,
-  formatarComMascara,
-} from "../../comum/Utils/Mascaras";
-import { toast } from "react-toastify";
+} from "../../comum/utils/mascaras";
+import "./PaginaCadastroCliente.css";
 
 const instanciaServicoCliente = new ServicoCliente();
 
@@ -38,7 +38,8 @@ const PaginaCadastroCliente = () => {
 
   const salvar = () => {
     if (!nome || !email) {
-      toast.error("Preencha os campos obrigatórios!");
+      toast.error("Preencha todos os campos obrigatórios!");
+      return;
     }
     const cliente = {
       id: params.id ? +params.id : Date.now(),
@@ -61,6 +62,13 @@ const PaginaCadastroCliente = () => {
       titulo={params.id ? "Editar Cliente" : "Novo Cliente"}
       voltarPara="/lista-clientes"
     >
+      {params.id && (
+        <div className="campo">
+          <label>Id</label>
+          <input type="text" value={params.id} disabled />
+        </div>
+      )}
+
       <div className="campo">
         <label>Nome</label>
         <input
@@ -85,7 +93,7 @@ const PaginaCadastroCliente = () => {
         <label>Celular</label>
         <input
           type="tel"
-          placeholder="Digite o número do seu celular"
+          placeholder="Digite o número do seu Whatsapp"
           value={celular}
           onChange={(e) =>
             setCelular(formatarComMascara(e.target.value, MASCARA_CELULAR))
@@ -107,14 +115,13 @@ const PaginaCadastroCliente = () => {
         <label>CPF</label>
         <input
           type="tel"
-          placeholder="Digite o seu CPF"
+          placeholder="Digite seu CPF"
           value={cpf}
           onChange={(e) =>
             setCpf(formatarComMascara(e.target.value, MASCARA_CPF))
           }
         />
       </div>
-
       <BotaoCustomizado cor="secundaria" aoClicar={salvar}>
         Salvar
       </BotaoCustomizado>
