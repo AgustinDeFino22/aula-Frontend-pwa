@@ -1,0 +1,14 @@
+.campo{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    & > lavel{
+    font-weight: bold;
+    }
+   
+    & > input {
+        padding: 16px;
+        font-size: 16px;
+      }
+}
